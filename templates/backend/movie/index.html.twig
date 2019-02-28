@@ -1,0 +1,67 @@
+{% extends 'backend/admin_base.html.twig' %}
+
+{% block title %} {{ parent() }} - {{ page_title }}{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-12">
+                <h1>Liste des films</h1>
+                    <form action="{{ path('backend_movie_add') }}" method="POST">
+                        <button class="btn btn-success">
+                            Ajouter un film
+                            <i class="fas fa-plus-circle"></i> 
+                        </button>
+                    </form>
+
+            
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {# Boucle #}
+                            {% for movie in movies %}
+                            <tr>
+                                <td>
+                                    {{ movie.id }}
+                                </td>
+                                <td>
+                                    <a href="{{path('movie_show', {'id': movie.id} )}}">
+                                        {{ movie.title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{path('backend_movie_show', {'id': movie.id} )}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form class="d-inline" action="{{path('backend_movie_delete', {'id': movie.id} )}}" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button class="text-danger bg-white border-0">&nbsp;<i class="far fa-trash-alt"></i></button>
+                                    </form>
+{#                                     <a href="" class="btn btn-warning">
+                                        Casting
+                                    </a> #}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {# Boucle #}
+                        </tbody>
+                    </table>
+
+                    <form action="{{ path('backend_movie_add') }}" method="POST">
+                        <button class="btn btn-success">
+                            Ajouter un film
+                            <i class="fas fa-plus-circle"></i> 
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - {{ page_title }}{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+    {% include "backend/partial/admin_nav.html.twig" %}
+{% endblock %}

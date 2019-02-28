@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - {{ page_title }}{% endblock %}
+
+{% block main %}
+
+    <h1>Tous les films</h1>
+    <h2 id="header-margin">Retrouvez les films recensés sur Hellociné, à voir ou à revoir, seul, en famille ou entre amis.</h2>
+
+    <div class="row">
+        <div class="col-2" id="genres">
+            <h3>Par genre</h3>
+            {% for genre in genres %}
+                <div>{{ genre.name }}</div>
+            {% endfor %}
+        </div>
+        <div class="col-10">
+            <ul>
+                {% for movie in movies %}
+                    <div class="row movie-main">
+                        <div class="col-4">
+                            <a href="{{ path('movie_show', { 'id': movie.id }) }}">
+                                {% if movie.image == null %}
+                                    <img src="{{ asset('images/default-movie.jpg') }}" class="img-fluid">
+                                {% else %}
+                                    <img src="{{ movie.image }}" class="img-fluid"
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col-8">
+                            <p>
+                                <a href="{{ path('movie_show', { 'id': movie.id }) }}" class="title">{{ movie.title }}</a>
+                            </p>
+
+                            <p>
+                                {% for genre in movie.genres %}
+                                    {{ genre.name }}
+                                    {% if not loop.last %}
+                                        ,
+                                    {% endif %}
+                                {% else %}
+                                    -
+                                {% endfor %}
+                            </p>
+
+                            <p>Avec 
+                                {% for casting in movie.castings %}
+                                    <a href="">{{ casting.person.name }}</a>
+                                    {% if not loop.last %}
+                                        ,
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                    
+                            <p class="summary">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                                Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                                porro dolor harum eaque aliquam omnis alias expedita!
+
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                                Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                                porro dolor harum eaque aliquam omnis alias expedita!
+                            </p>                  
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

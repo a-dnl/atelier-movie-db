@@ -1,0 +1,65 @@
+{% extends 'backend/admin_base.html.twig' %}
+
+{% block title %} {{ parent() }} - {{ page_title }}{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-12">
+                <h1>Liste des genres</h1>
+                    <form action="" method="POST">
+                        <button class="btn btn-success">
+                            Ajouter un genre
+                            <i class="fas fa-plus-circle"></i> 
+                        </button>
+                    </form>
+
+            
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {# Boucle #}
+                            {% for genre in genres %}
+                            <tr>
+                                <td>
+                                    {{ genre.id }}
+                                </td>
+                                <td>
+                                    {{ genre.name }}
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form class="d-inline" action="" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button class="text-danger bg-white border-0">&nbsp;<i class="far fa-trash-alt"></i></button>
+                                    </form>
+{#                                     <a href="" class="btn btn-warning">
+                                        Casting
+                                    </a> #}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {# Boucle #}
+                        </tbody>
+                    </table>
+
+                    <form action="" method="POST">
+                        <button class="btn btn-success">
+                            Ajouter un genre
+                            <i class="fas fa-plus-circle"></i> 
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

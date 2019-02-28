@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - {{ page_title }}{% endblock %}
+
+{% block main %}
+
+    <div class="row movie-main">
+        <div class="col-4">
+            <a href="{{ path('movie_show', { 'id': movie.id }) }}">
+                {% if movie.image == null %}
+                    <img src="{{ asset('images/default-movie.jpg') }}" class="img-fluid">
+                {% else %}
+                    <img src="{{ movie.image }}" class="img-fluid"
+                {% endif %}
+            </a>
+        </div>
+        <div class="col-8">
+            <p>
+                <a href="show.html" class="title">{{ movie.title }}</a>
+            </p>
+
+            <p>
+                {% for genre in movie.genres %}
+                    {{ genre.name }}
+                    {% if not loop.last %}
+                        ,
+                    {% endif %}
+                {% else %}
+                    -
+                {% endfor %}
+            </p>
+
+            <p>Avec 
+                {% for casting in castings %}
+                    <a href="">{{ casting.person.name }}</a>
+                    {% if not loop.last %}
+                        ,
+                    {% endif %}
+                {% endfor %}
+            </p>
+    
+            <p class="summary">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                porro dolor harum eaque aliquam omnis alias expedita!
+
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                porro dolor harum eaque aliquam omnis alias expedita!
+            </p>    
+        </div>
+    </div>
+
+    <h2>Synopsis et détails</h2>
+
+    <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+            Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+            porro dolor harum eaque aliquam omnis alias expedita!
+
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+            Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+            porro dolor harum eaque aliquam omnis alias expedita!
+
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+            Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+            porro dolor harum eaque aliquam omnis alias expedita!
+
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+            Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+            porro dolor harum eaque aliquam omnis alias expedita!
+
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+            Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+            porro dolor harum eaque aliquam omnis alias expedita!
+
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+            Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+            porro dolor harum eaque aliquam omnis alias expedita!
+    </p>
+    <p class="infos">
+        <label>Année de production</label>
+        2019
+    </p>
+
+    <h2 id="casting">Acteurs et actrices</h2>
+
+    <div class="row casting">
+
+        {% for casting in castings %}
+            <div class="col-3">
+                <div class="actor">{{ casting.person.name }}</div>
+                <div class="role">{{ casting.role }} ({{ casting.orderCredit }})</div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <hr>
+
+{% endblock %}

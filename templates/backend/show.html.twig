@@ -1,0 +1,15 @@
+{% extends 'backend/admin_base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-12">
+            <h1>{{ page_title }}</h1>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}

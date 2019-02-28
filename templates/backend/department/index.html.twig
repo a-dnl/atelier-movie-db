@@ -1,0 +1,64 @@
+{% extends 'backend/admin_base.html.twig' %}
+
+{% block title %} {{ parent() }} - {{ page_title }}{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-12">
+                <h1>Liste des départements</h1>
+                    <form action="{{ path('backend_department_add') }}" method="POST">
+                        <button class="btn btn-success">
+                            Ajouter un département
+                            <i class="fas fa-plus-circle"></i> 
+                        </button>
+                    </form>
+
+            
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {# Boucle #}
+                            {% for department in departments %}
+                            <tr>
+                                <td>
+                                    {{ department.id }}
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        {{ department.dptName }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{path('backend_department_show', {'id': department.id} )}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form class="d-inline" action="{{path('backend_department_delete', {'id': department.id} )}}" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button class="text-danger bg-white border-0">&nbsp;<i class="far fa-trash-alt"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {# Boucle #}
+                        </tbody>
+                    </table>
+
+                    <form action="{{ path('backend_department_add') }}" method="POST">
+                        <button class="btn btn-success">
+                            Ajouter un département
+                            <i class="fas fa-plus-circle"></i> 
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
